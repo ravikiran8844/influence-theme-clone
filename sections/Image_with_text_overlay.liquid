@@ -1,0 +1,382 @@
+<div
+  class="image{{ section.id}} page-width">
+  {% render 'image', class: "image{{section.id}}", mobileSrc: section.settings.mobile_image, desktopSrc: section.settings.desktop_image %}
+  <div
+    class="overlay-{{section.id}}">
+    {% for block in section.blocks %}
+      <h3
+        class="textColor">{{ block.settings.overlay_text_heading }}</h3>
+      <h2
+        class="textColor">{{ block.settings.overlay_text_subheading }}</h2>
+      <div
+        class="mb-15">
+        {% if block.settings.first_button_link != blank and block.settings.first_button_label != blank %}
+          <a
+            class="btnLinks{{section.id}}"
+            href="{{block.settings.first_button_link}}">
+            <button
+              class="button">{{ block.settings.first_button_label }}</button>
+          </a>
+        {% endif %}
+        {% if block.settings.second_button_link != blank and block.settings.second_button_label != blank %}
+          <a
+            class="btnLinks{{section.id}}"
+            href="{{block.settings.second_button_link}}">
+            <button
+              class="button">{{ block.settings.second_button_label }}</button>
+          </a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .btnLinks{{ section.id}}{
+    text-decoration: none;
+  }
+  .image{{ section.id}}{
+    position: relative;
+    width: 100vw;
+  }
+  .overlay-{{ section.id}}{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .outline {
+    background-color: transparent;
+  }
+  .textColor {
+    color: #fff;
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Image with text overlay",
+    "class": "image_with_text_overlay",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Image settings"
+      },
+      {
+        "type": "image_picker",
+        "id": "desktop_image",
+        "label": "Desktop image",
+        "info": "2000x900 Recommended"
+      },
+      {
+        "type": "select",
+        "id": "desktop_height",
+        "label": "Desktop height",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          }, {
+            "value": "medium",
+            "label": "Medium"
+          }, {
+            "value": "large",
+            "label": "Large"
+          }, {
+            "value": "croptofit",
+            "label": "Crop to fit screen"
+          }
+        ],
+        "default": "large"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_image",
+        "label": "Mobile image",
+        "info": "1400x1400 Recommended"
+      }, {
+        "type": "select",
+        "id": "mobile_height",
+        "label": "Mobile height",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small"
+          }, {
+            "value": "medium",
+            "label": "Medium"
+          }, {
+            "value": "large",
+            "label": "Large"
+          }, {
+            "value": "croptofit",
+            "label": "Crop to fit screen"
+          }
+        ],
+        "default": "medium"
+      }, {
+        "type": "url",
+        "id": "image_link",
+        "label": "Image link"
+      }, {
+        "type": "select",
+        "id": "section_width",
+        "label": "Section width",
+        "info": "These changes may only be visible on larger screens",
+        "options": [
+          {
+            "value": "full_width",
+            "label": "Full width"
+          }, {
+            "value": "full_width_with_padding",
+            "label": "Full width with padding"
+          }
+        ],
+        "default": "full_width"
+      }, {
+        "type": "header",
+        "content": "LAYOUT"
+      }, {
+        "type": "select",
+        "id": "text_position",
+        "label": "Text Position",
+        "options": [
+          {
+            "value": "top-left",
+            "label": "Top Left"
+          },
+          {
+            "value": "top-center",
+            "label": "Top Center"
+          },
+          {
+            "value": "top-right",
+            "label": "Top Right"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }, {
+            "value": "bottom-left",
+            "label": "Bottom Left"
+          }, {
+            "value": "bottom-center",
+            "label": "Bottom Center"
+          }, {
+            "value": "bottom-right",
+            "label": "Bottom Right"
+          }
+        ],
+        "default": "bottom-right"
+      }, {
+        "type": "header",
+        "content": "COLOR SCHEME"
+      }, {
+        "type": "select",
+        "id": "background_color_scheme",
+        "label": "Background color scheme",
+        "info": "This will apply if the section width is 'full width with padding'",
+        "options": [
+          {
+            "value": "general",
+            "label": "General"
+          }, {
+            "value": "accent1",
+            "label": "Accent 1"
+          }, {
+            "value": "accent2",
+            "label": "Accent 2"
+          }, {
+            "value": "accent3",
+            "label": "Accent 3"
+          }
+        ],
+        "default": "general"
+      }, {
+        "type": "select",
+        "id": "overlay_color_scheme",
+        "label": "Overlay color scheme",
+        "options": [
+          {
+            "value": "light",
+            "label": "Light"
+          }, {
+            "value": "dark",
+            "label": "Dark"
+          }
+        ],
+        "default": "dark"
+      }, {
+        "type": "range",
+        "id": "overlay_opacity",
+        "label": "Overlay opacity",
+        "min": 0,
+        "max": 100,
+        "default": 30
+      }, {
+        "type": "header",
+        "content": "THEME SETTINGS"
+      }, {
+        "type": "checkbox",
+        "id": "enable_animations",
+        "label": "Enable animations",
+        "info": "Show fade in animations",
+        "default": true
+      }
+
+    ],
+    "blocks": [
+      {
+        "name": "Overlay Content",
+        "type": "overlay_text",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "header",
+            "content": "TEXT SETTINGS"
+          },
+          {
+            "type": "text",
+            "id": "overlay_text_heading",
+            "label": "Heading",
+            "default": "Big, beautiful imagery"
+          },
+          {
+            "type": "text",
+            "id": "overlay_text_subheading",
+            "label": "Subheading",
+            "default": "Make an impact"
+          },
+          {
+            "type": "header",
+            "content": "BUTTONS"
+          }, {
+            "type": "url",
+            "id": "first_button_link",
+            "label": "First button link"
+          }, {
+            "type": "text",
+            "id": "first_button_label",
+            "label": "First button label",
+            "default": "Shop now"
+          }, {
+            "type": "radio",
+            "id": "first_button_style",
+            "label": "First button style",
+            "options": [
+              {
+                "label": "Outline",
+                "value": "outline"
+              }, {
+                "label": "Fill",
+                "value": "fill"
+              }
+            ],
+            "default": "fill"
+          }, {
+            "type": "url",
+            "id": "second_button_link",
+            "label": "Second button link"
+          }, {
+            "type": "text",
+            "id": "second_button_label",
+            "label": "Second button label",
+            "default": "Shop now"
+          }, {
+            "type": "radio",
+            "id": "second_button_style",
+            "label": "Second button style",
+            "options": [
+              {
+                "label": "Outline",
+                "value": "outline"
+              }, {
+                "label": "Fill",
+                "value": "fill"
+              }
+            ],
+            "default": "outline"
+          }, {
+            "type": "header",
+            "content": "COLOR SCHEME"
+          }, {
+            "type": "select",
+            "id": "ns_color_scheme",
+            "label": "Color scheme",
+            "options": [
+              {
+                "value": "general",
+                "label": "General"
+              }, {
+                "value": "accent1",
+                "label": "Accent 1"
+              }, {
+                "value": "accent2",
+                "label": "Accent 2"
+              }, {
+                "value": "accent3",
+                "label": "Accent 3"
+              }
+            ],
+            "default": "accent2"
+          }
+        ]
+      }, {
+        "name": "Callout",
+        "type": "callout",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "select",
+            "id": "social_icon",
+            "label": "Social Icon",
+            "options": [
+              {
+                "label": "None",
+                "value": "none"
+              },
+              {
+                "label": "Facebook",
+                "value": "facebook"
+              },
+              {
+                "label": "Instagram",
+                "value": "instagram"
+              },
+              {
+                "label": "Pinterest",
+                "value": "pinterest"
+              }, {
+                "label": "Snapchat",
+                "value": "snapchat"
+              }, {
+                "label": "TikTok",
+                "value": "tiktok"
+              }, {
+                "label": "Twitch",
+                "value": "twitch"
+              }, {
+                "label": "Twitter",
+                "value": "twitter"
+              }, {
+                "label": "Youtube",
+                "value": "youtube"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image with text overlay"
+      }
+    ]
+  }
+{% endschema %}
