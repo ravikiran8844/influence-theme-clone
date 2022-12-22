@@ -1,4 +1,3 @@
-/*Richtext Section*/
 .container{
     margin: 0 auto;
     padding: 0 15px;
@@ -9,4 +8,33 @@
     .container{
         padding: 0 50px;
     }
+    .homepage-section + .homepage-section{
+        margin-top: 50px;
+    }
 }
+
+
+@media only screen and (min-width:990px) {
+    .homepage-section + .homepage-section{
+        margin-top: 80px;
+    }
+}
+
+/*Richtext Section*/
+.text-left{
+    text-align: left;
+}
+.text-center{
+    text-align: center;
+}
+.text-right{
+    text-align: right;
+}
+.richtext__wrapper{
+margin: 0 auto;
+max-width: 650px;
+padding: 30px 0;
+}
+
+
+/*Image with text section */
