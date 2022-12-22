@@ -12,91 +12,47 @@
     "settings": [
       {
         "type": "header",
-        "content": "General"
-      },
-      {
-        "type": "color",
-        "id": "heading_text_color",
-        "default": "#000000",
-        "label": "Headings"
+        "content": "t:settings_schema.colors.settings.primary_colors.label"
       },
       {
         "type": "color",
         "id": "body_text_color",
-        "default": "#000000",
-        "label": "Body Text"
+        "default": "#121212",
+        "label": "t:settings_schema.colors.settings.body_text.label"
+      },
+      {
+        "type": "color",
+        "id": "heading_text_color",
+        "default": "#121212",
+        "label": "t:settings_schema.colors.settings.heading_text.label"
       },
       {
         "type": "color",
         "id": "body_background_color",
         "default": "#ffffff",
-        "label": "Background"
+        "label": "t:settings_schema.colors.settings.body_background.label"
       },
       {
         "type": "header",
-        "content": "Accent 1"
+        "content": "t:settings_schema.colors.settings.secondary_colors.label"
       },
       {
         "type": "color",
-        "id": "assent1_heading_color",
+        "id": "button_text_color",
         "default": "#ffffff",
-        "label": "Headings"
+        "label": "t:settings_schema.colors.settings.button_text.label"
       },
       {
         "type": "color",
-        "id": "assent1_bodytext_color",
-        "default": "#ffffff",
-        "label": "Body text"
+        "id": "button_background_color",
+        "default": "#121212",
+        "label": "t:settings_schema.colors.settings.button_background.label"
       },
       {
         "type": "color",
-        "id": "assent1_background_color",
-        "default": "#000000",
-        "label": "Background"
-      },
-      {
-        "type": "header",
-        "content": "Accent 2"
-      },
-      {
-        "type": "color",
-        "id": "assent2_heading_color",
-        "default": "#000000",
-        "label": "Headings"
-      },
-      {
-        "type": "color",
-        "id": "assent2_bodytext_color",
-        "default": "#000000",
-        "label": "Body text"
-      },
-      {
-        "type": "color",
-        "id": "assent2_background_color",
-        "default": "#E0E0E0",
-        "label": "Background"
-      },
-      {
-        "type": "header",
-        "content": "Accent 3"
-      },
-      {
-        "type": "color",
-        "id": "assent3_heading_color",
-        "default": "#000000",
-        "label": "Headings"
-      },
-      {
-        "type": "color",
-        "id": "assent3_bodytext_color",
-        "default": "#000000",
-        "label": "Body text"
-      },
-      {
-        "type": "color",
-        "id": "assent3_background_color",
-        "default": "#F7F7F7",
-        "label": "Background"
+        "id": "border_colors",
+        "default": "#e2e2e2",
+        "label": "t:settings_schema.colors.settings.border_colors.label"
       }
     ]
   },
