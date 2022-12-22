@@ -1,0 +1,143 @@
+{% if section.blocks.size > 0 %}
+  <div class="image-gallery container">
+    <div class="flexbox flex">
+      {% for block in section.blocks %}
+        <div class="flexbox__item">
+          <div class="image-item">
+            <div class="image-item__image">
+              {% if block.settings.image != blank %}
+                {% assign mobile_image = block.settings.image_mobile | default: block.settings.image %}
+                {% render 'image', mobileSrc: mobile_image, desktopSrc: block.settings.image %}
+              {% endif %}
+            </div>
+            <div class="image-item__content {{block.settings.text_position}}">
+              {% if block.settings.heading_text != blank %}
+                <h3 class="image-text__heading heading-{{ section.id }}">{{ block.settings.heading_text }}</h3>
+              {% endif %}
+
+              {% if block.settings.paragraph_text != blank %}
+                <div class="image-text__paragraph paragraph-{{ section.id }}">{{ block.settings.paragraph_text }}</div>
+              {% endif %}
+
+              {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+                <div class="image-text__button">
+                  <a class="button button--primary button-{{ section.id }}" href="{{ block.settings.button_link }}">
+                    {{ block.settings.button_text }}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% style %}
+  {% for block in section.settings.blocks %}
+    .heading-{{ section.id }}{
+      color: {{ block.settings.heading_text_color }}
+      ;
+    }
+    .paragraph-{{ section.id }}{
+      color: {{ block.settings.paragraph_text_color }}
+      ;
+    }
+    .button-{{ section.id }}{
+      color: {{ block.settings.button_text_color }}
+      ;
+      background: {{ block.settings.button_background_color }}
+    }
+  {% endfor %}
+{% endstyle %}
+
+{% schema %}
+  {
+    "name": "Image Gallery",
+    "class": "section",
+    "tag": "section",
+    "blocks": [
+      {
+        "name": "Images",
+        "type": "image-section",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Image (Mobile)"
+          },
+          {
+            "type": "text",
+            "id": "heading_text",
+            "label": "Heading Text",
+            "default": "Heading Text"
+          },
+          {
+            "type": "richtext",
+            "id": "paragraph_text",
+            "label": "Paragraph Text",
+            "default": "<p>Image Gallery Paragraph Text.</p>"
+          }, {
+            "type": "text",
+            "id": "button__text",
+            "label": "Button text",
+            "default": "Button Text"
+          }, {
+            "type": "url",
+            "id": "button__link",
+            "label": "Button link"
+          }, {
+            "type": "select",
+            "id": "text_position",
+            "label": "Text position",
+            "options": [
+              {
+                "value": "align-start justify-start",
+                "label": "Top left"
+              },
+              {
+                "value": "align-start justify-center",
+                "label": "Top center"
+              },
+              {
+                "value": "align-start justify-end",
+                "label": "Top right"
+              },
+              {
+                "value": "align-center justify-start",
+                "label": "Middle left"
+              }, {
+                "value": "align-center justify-center",
+                "label": "Middle center"
+              }, {
+                "value": "align-center justify-end",
+                "label": "Middle right"
+              }, {
+                "value": "align-end justify-start",
+                "label": "Bottom left"
+              }, {
+                "value": "align-end justify-center",
+                "label": "Bottom center"
+              }, {
+                "value": "align-end justify-end",
+                "label": "Bottom right"
+              }
+            ],
+            "default": "align-start justify-start"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image Gallery"
+      }
+    ]
+  }
+{% endschema %}
