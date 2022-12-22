@@ -1,6 +1,35 @@
+<div class="richtext richtext-{{section.id}}">
+  <div class="container">
+    <div class="richtext__wrapper">
+      {% if section.settings.heading_text != blank %}
+        <h2 class="richtext__heading">{{ section.settings.heading_text }}</h2>
+      {% endif %}
+      {% if section.settings.paragraph_text != blank %}
+        <div class="richtext__paragraph">{{ section.settings.paragraph_text }}</div>
+      {% endif %}
+      {% if section.settings.button__text != blank %}
+        <div class="richtext__button">
+          <a class="button button--primary" href="{{ section.settings.button__link }}">{{ section.settings.button__text }}</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .richtext-{{ section.id}}{
+    background-color: {{ section.settings.section-background}}
+  }
+  .richtext__wrapper {
+    text-align: {{ section.settings.text_alignment}}
+    ;
+  }
+</style>
+
+
 {% schema %}
   {
-    "name": "RichText",
+    "name": "Richtext",
     "class": "section",
     "tag": "section",
     "settings": [
