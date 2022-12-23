@@ -28,14 +28,27 @@
 </div>
 
 <style>
+  .image-text-{{ section.id}}{
+    background-color: {{ section.settings.background_color}}
+    ;
+  }
+  .image-text__content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   .flexbox {
     gap: 3%;
     flex-direction: {{ section.settings.image_alignment}}
     ;
+
   }
   .flexbox__item {
     width: 50%;
-    padding: 0 10px;
+    padding: 20px;
   }
 
   @media screen and (max-width:990px) {
@@ -67,6 +80,11 @@
         "label": "Image (Mobile)"
       },
       {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color"
+      },
+      {
         "type": "select",
         "id": "image_alignment",
         "label": "Image position",
@@ -80,8 +98,7 @@
           }
         ],
         "default": "row"
-      },
-      {
+      }, {
         "type": "header",
         "content": "CONTENT SETTINGS"
       }, {

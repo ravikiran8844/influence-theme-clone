@@ -1,4 +1,4 @@
-<div class="logo-container">
+<div class="logo-container logo-section_{{ section.id}}">
   <div class="logo-card flex">
     {% for block in section.blocks %}
       <div class="logo-item center">
@@ -15,6 +15,10 @@
 </div>
 
 <style>
+  .logo-section_{{ section.id}}{
+    background-color: {{ section.settings.background_color}}
+    ;
+  }
   .logo-container {
     padding: 10px;
   }
@@ -35,6 +39,13 @@
       "name": "Logo List",
       "class": "section",
       "tag": "section",
+      "settings": [
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color"
+        }
+      ],
       "blocks": [
         {
           "name": "Logo List",

@@ -1,7 +1,7 @@
 {{ 'flickity.css' | asset_url | stylesheet_tag }}
 
 <div class="slideshow">
-  <div class="slideshow__wrapper" data-flickity='{ "cellAlign": "left", "contain": true }'>
+  <div class="slideshow__wrapper">
     {% for block in section.blocks %}
       {% if block.settings.image != null %}
         <div class="slideshow__image">

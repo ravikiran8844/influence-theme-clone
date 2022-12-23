@@ -30,6 +30,8 @@
     {% render 'meta-tags' %}
 
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'flickity.js' | asset_url }}" defer="defer"></script>
+
     {{ content_for_header }}
 
     {%- liquid
@@ -135,6 +137,8 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'theme.css' | asset_url | stylesheet_tag }}
     {{ 'section.css' | asset_url | stylesheet_tag }}
+    {{ 'flickity.css' | asset_url | stylesheet_tag }}
+
   </head>
 
   <body class="template-{{ template.name }}">
