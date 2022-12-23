@@ -6,7 +6,7 @@
       <form>
         <div class="flex align-center mb-20 justify-center">
           <input type="email">
-          <button class="button button--primary btn{{section.id}}" type="submit">Subscribe</button>
+          <button class="button button--secondary btn-color_{{section.id}}" type="submit">Subscribe</button>
         </div>
       </form>
     </div>
@@ -16,6 +16,11 @@
 {% style %}
   .text-color_{{ section.id}}{
     color: {{ section.settings.text_color}}
+  }
+  .btn-color_{{ section.id}}{
+    background-color: {{ section.settings.button_background_color}}
+    ;
+    color: {{ section.settings.button_text_color}}
   }
   .news-letter__{{ section.id}}{
     text-transform: uppercase;
@@ -53,6 +58,14 @@
         "default": "Signup now"
       },
       {
+        "type": "color",
+        "id": "button_background_color",
+        "label": "Button Background Color"
+      }, {
+        "type": "color",
+        "id": "button_text_color",
+        "label": "Button Text Color"
+      }, {
         "type": "text",
         "id": "heading",
         "label": "Heading",
