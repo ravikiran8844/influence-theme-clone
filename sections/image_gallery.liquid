@@ -10,22 +10,24 @@
                 {% render 'image', mobileSrc: mobile_image, desktopSrc: block.settings.image %}
               {% endif %}
             </div>
-            <div class="image-item__content {{block.settings.text_position}}">
-              {% if block.settings.heading_text != blank %}
-                <h3 class="image-text__heading heading-{{ section.id }}">{{ block.settings.heading_text }}</h3>
-              {% endif %}
+            <div class="image-item__content flex {{block.settings.text_position}}">
+              <div>
+                {% if block.settings.heading_text != blank %}
+                  <h3 class="image-text__heading heading-{{ block.id}}">{{ block.settings.heading_text }}</h3>
+                {% endif %}
 
-              {% if block.settings.paragraph_text != blank %}
-                <div class="image-text__paragraph paragraph-{{ section.id }}">{{ block.settings.paragraph_text }}</div>
-              {% endif %}
+                {% if block.settings.paragraph_text != blank %}
+                  <div class="image-text__paragraph paragraph-{{ block.id }}">{{ block.settings.paragraph_text }}</div>
+                {% endif %}
 
-              {% if block.settings.button_text != blank and block.settings.button_link != blank %}
-                <div class="image-text__button">
-                  <a class="button button--primary button-{{ section.id }}" href="{{ block.settings.button_link }}">
-                    {{ block.settings.button_text }}
-                  </a>
-                </div>
-              {% endif %}
+                {% if block.settings.button_text != blank and block.settings.button_link != blank %}
+                  <div class="image-text__button">
+                    <a class="button button-{{ block.id }}" href="{{ block.settings.button_link }}">
+                      {{ block.settings.button_text }}
+                    </a>
+                  </div>
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>
@@ -35,19 +37,25 @@
 {% endif %}
 
 {% style %}
-  {% for block in section.settings.blocks %}
-    .heading-{{ section.id }}{
+  {% for block in section.blocks %}
+    .heading-{{ block.id}}{
       color: {{ block.settings.heading_text_color }}
       ;
     }
-    .paragraph-{{ section.id }}{
+    .paragraph-{{ block.id }}{
       color: {{ block.settings.paragraph_text_color }}
       ;
     }
-    .button-{{ section.id }}{
+    .button-{{ block.id }}{
       color: {{ block.settings.button_text_color }}
       ;
       background: {{ block.settings.button_background_color }}
+    }
+    .button-{{ block.id }}:hover  {
+      background: transparent;
+      border: 2px solid #fff;
+      color: #fff;
+
     }
   {% endfor %}
 {% endstyle %}
@@ -79,19 +87,35 @@
             "default": "Heading Text"
           },
           {
+            "type": "color",
+            "id": "heading_text_color",
+            "label": "Heading Text Color"
+          }, {
             "type": "richtext",
             "id": "paragraph_text",
             "label": "Paragraph Text",
             "default": "<p>Image Gallery Paragraph Text.</p>"
           }, {
+            "type": "color",
+            "id": "paragraph_text_color",
+            "label": "Paragraph Text Color"
+          }, {
             "type": "text",
-            "id": "button__text",
+            "id": "button_text",
             "label": "Button text",
             "default": "Button Text"
           }, {
             "type": "url",
-            "id": "button__link",
+            "id": "button_link",
             "label": "Button link"
+          }, {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button Text Color"
+          }, {
+            "type": "color",
+            "id": "button_background_color",
+            "label": "Button Background Color"
           }, {
             "type": "select",
             "id": "text_position",

@@ -1,33 +1,27 @@
-<div
-  class="flex flex-column flex-column align-center justify-center ns__{{section.id}} {{section.settings.ns_color_scheme}} {{section.settings.ns_alignment}}">
-  <div
-    class="text-color{{section.id}}">
-    <h3
-      class="mb-15">{{ section.settings.ns_sub_heading }}</h3>
-    <h2
-      class="mb-20">{{ section.settings.ns_heading }}</h2>
-    <form>
-      <div
-        class="flex align-center mb-20 justify-center">
-        <input
-          type="email">
-        <button
-          class="button btn{{section.id}}"
-          type="submit">Subscribe</button>
-      </div>
-    </form>
+{% if section.settings.sub_heading != blank and section.settings.heading != blank %}
+  <div class="flex flex-column flex-column align-center justify-center news-letter__{{section.id}} {{section.settings.text_alignment}}">
+    <div class="text-color{{section.id}}">
+      <h3 class="mb-15">{{ section.settings.sub_heading }}</h3>
+      <h2 class="mb-20">{{ section.settings.heading }}</h2>
+      <form>
+        <div class="flex align-center mb-20 justify-center">
+          <input type="email">
+          <button class="button button--primary btn{{section.id}}" type="submit">Subscribe</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
+{% endif %}
 
 {% style %}
 
-  .ns__{{ section.id}}{
+  .news-letter__{{ section.id}}{
     text-transform: uppercase;
     height: 434px;
     width: 100vw;
     color: #FFFFFF;
     padding: 15%;
-
+    background-color: {{ section.settings.background_color}}
   }
   input {
     min-height: 4.8rem;
@@ -43,20 +37,22 @@
     "tag": "section",
     "settings": [
       {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color"
+      }, {
         "type": "text",
-        "id": "ns_sub_heading",
+        "id": "sub_heading",
         "label": "Subheading",
         "default": "Signup now"
-      },
-      {
+      }, {
         "type": "text",
-        "id": "ns_heading",
+        "id": "heading",
         "label": "Heading",
         "default": "Get the newsletter"
-      },
-      {
+      }, {
         "type": "select",
-        "id": "ns_alignment",
+        "id": "text_alignment",
         "label": "Alignment",
         "options": [
           {
@@ -71,45 +67,6 @@
           }
         ],
         "default": "center"
-      },
-      {
-        "type": "select",
-        "id": "ns_section_width",
-        "label": "Section width",
-        "info": "These changes may only be visible on larger screens",
-        "options": [
-          {
-            "value": "full-width-with-padding",
-            "label": "Full width with padding"
-          }, {
-            "value": "narrow",
-            "label": "Narrow"
-          }
-        ],
-        "default": "full-width-with-padding"
-      }, {
-        "type": "header",
-        "content": "COLOR SCHEME"
-      }, {
-        "type": "select",
-        "id": "ns_color_scheme",
-        "label": "Color scheme",
-        "options": [
-          {
-            "value": "general",
-            "label": "General"
-          }, {
-            "value": "accent1",
-            "label": "Accent 1"
-          }, {
-            "value": "accent2",
-            "label": "Accent 2"
-          }, {
-            "value": "accent3",
-            "label": "Accent 3"
-          }
-        ],
-        "default": "accent2"
       }
     ],
     "presets": [

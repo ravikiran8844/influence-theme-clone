@@ -9,13 +9,13 @@
     <div class="flexbox__item">
       <div class="image-text__content {{section.settings.text_alignment}}">
         {% if section.settings.caption_text != blank %}
-          <h4 class="richtext__heading">{{ section.settings.heading_text }}</h4>
+          <h4 class="richtext__caption">{{ section.settings.caption_text }}</h4>
         {% endif %}
         {% if section.settings.heading_text != blank %}
           <h2 class="richtext__heading">{{ section.settings.heading_text }}</h2>
         {% endif %}
         {% if section.settings.paragraph_text != blank %}
-          <div class="richtext__paragraph">{{ section.settings.paragraph_text }}</div>
+          <div class="richtext__paragraph h3">{{ section.settings.paragraph_text }}</div>
         {% endif %}
         {% if section.settings.button__text != blank %}
           <div class="richtext__button">
